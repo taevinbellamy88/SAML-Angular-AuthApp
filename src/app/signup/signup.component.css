@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.btnPad {
+  padding: 15px;
+  display: flex;
+  margin-left: 225px;
+  margin-top: 50px;
+  margin-bottom: -25px;
+}
+.card {
+  padding: 60px;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.7
+  ); /* Set the background color to a translucent white */
+  border: 2px solid #ccc; /* Add a border around the card */
+  border-radius: 5px; /* Round the corners of the card */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow to make the card look like it's floating */
+}
+.form-group {
+  padding: 10px;
+}
+.card-title {
+  text-align: center; /* Center the title */
+  margin-bottom: 1.5rem; /* Add some spacing between the title and the form */
+}
+
+.form-group {
+  margin-bottom: 1rem; /* Add some spacing between form elements */
+}
+
+input[type="email"],
+input[type="password"],
+input[type="firstName"],
+input[type="lastName"] {
+  width: 500px; /* Set the width to 100% */
+}
+
+input[type="email"]:focus,
+input[type="firstName"]:focus,
+input[type="lastName"]:focus,
+input[type="password"]:focus {
+  border-color: #007bff; /* Change the border color on focus */
+  box-shadow: none; /* Remove the default box shadow on focus */
+}
+
+button[type="submit"] {
+  background-color: #007bff; /* Set the button background color */
+  border: none; /* Remove the default border */
+  border-radius: 5px; /* Round the corners of the button */
+  box-shadow: none; /* Remove the default box shadow */
+  margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0069d9; /* Change the button background color on hover */
+}
