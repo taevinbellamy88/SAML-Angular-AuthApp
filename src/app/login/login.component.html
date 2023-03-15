@@ -29,19 +29,15 @@
               <button
                 type="submit"
                 class="btn btn-primary btnPad2"
-                (click)="login()"
+                (click)="loginNative()"
               >
                 Login
               </button>
             </div>
             <p style="text-align: center; margin-top: 50px">-Or-</p>
             <div style="display: inline-flex; margin-right: 10px">
-              <button
-                type="submit"
-                class="btnPad btnClr"
-                (click)="loginGoogle()"
-              >
-                Login via Google
+              <button type="submit" class="btnPad btnClr">
+                <asl-google-signin-button></asl-google-signin-button>
               </button>
 
               <button type="submit" class="btnPad btnClr" (click)="loginSaml()">
@@ -50,6 +46,11 @@
             </div>
           </form>
         </div>
+        <!-- <div *ngIf="socialAuthServive.authState | async as socialUser">
+          <p>Hello, {{socialUser.name}}!</p>
+          <p>Your email: {{socialUser.email}}</p>
+          <button mat-raised-button (click)="logout()">Logout</button>
+        </div> -->
       </div>
     </div>
   </div>

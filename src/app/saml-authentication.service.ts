@@ -78,7 +78,7 @@ export class AuthService {
       );
   }
 
-  login(username: string, password: string) {
+  loginNative(username: string, password: string) {
     console.log(username, password);
     return this.http
       .post<any>('http://localhost:50000/api/auth/login', {
