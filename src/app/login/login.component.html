@@ -28,7 +28,7 @@
               />
               <button
                 type="submit"
-                class="btn btn-primary btnPad2"
+                class="btn btn-primary btnPad2 btnContainer"
                 (click)="loginNative()"
               >
                 Login
@@ -36,13 +36,14 @@
             </div>
             <p style="text-align: center; margin-top: 50px">-Or-</p>
             <div style="display: inline-flex; margin-right: 10px">
-              <button type="submit" class="btnPad btnClr">
-                <asl-google-signin-button></asl-google-signin-button>
-              </button>
-
-              <button type="submit" class="btnPad btnClr" (click)="loginSaml()">
+              <button
+                type="submit"
+                class="btn btn-primary btnPad3 btnContainer"
+                (click)="loginSaml()"
+              >
                 Login via SAML
               </button>
+              <app-google-sso class="btn"></app-google-sso>
             </div>
           </form>
         </div>

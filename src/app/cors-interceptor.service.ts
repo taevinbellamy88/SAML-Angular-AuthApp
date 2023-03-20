@@ -16,7 +16,7 @@ export class CorsInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': 'true',
     });
 

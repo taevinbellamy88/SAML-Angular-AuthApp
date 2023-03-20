@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../saml-authentication.service';
-import {
-  SocialAuthService,
-  GoogleLoginProvider,
-  SocialUser,
-  SocialAuthServiceConfig,
-} from '@abacritt/angularx-social-login';
-
-import { GoogleAuth } from 'google-auth-library';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -18,21 +11,15 @@ import { GoogleAuth } from 'google-auth-library';
 export class LoginComponent implements OnInit {
   email: string = ''; // Define the email property
   password: string = '';
-  user: SocialUser = new SocialUser();
   loggedIn: boolean = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private socialAuthService: SocialAuthService
+    private http: HttpClient
   ) {}
 
-  ngOnInit() {
-    this.socialAuthService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = user != null;
-    });
-  }
+  ngOnInit() {}
 
   loginNative(): void {
     //this.router.navigate(['/home']);
@@ -49,23 +36,9 @@ export class LoginComponent implements OnInit {
   //   this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   // }
 
-  loginWithGoogle(): void {
-    this.socialAuthService
-      .signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then(() => this.router.navigate(['success']));
-  }
-
-  signOut(): void {
-    this.socialAuthService.signOut();
-  }
+  loginWithGoogle(): void {}
 
   loginSaml(): void {
-    this.authService
-      .loginSaml(this.email, this.password)
-      .subscribe((result) => {
-        if (result) {
-          this.router.navigate(['/home']);
-        }
-      });
+    window.location.href = 'http://localhost:50000/api/auth/initiate-saml';
   }
 }

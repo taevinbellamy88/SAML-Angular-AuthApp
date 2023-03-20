@@ -5,7 +5,7 @@
   height: 100vh;
 }
 .btnPad {
-  padding: 10px;
+  padding: 5px;
   display: flex;
   margin-left: 50px;
   margin-top: 30px;
@@ -18,9 +18,12 @@
   border-radius: 5px;
   padding: 15px;
   display: flex;
-  margin-left: 215px;
+  margin-left: 205px;
   margin-top: 50px;
   margin-bottom: -25px;
+}
+.btnPad3 {
+  margin-left: 100px;
 }
 .card {
   margin-top: 80px;

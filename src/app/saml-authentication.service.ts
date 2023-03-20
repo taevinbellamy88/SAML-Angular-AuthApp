@@ -120,26 +120,6 @@ export class AuthService {
       );
   }
 
-  loginSaml(username: string, password: string) {
-    console.log(username, password);
-    return this.http
-      .post<any>('http://localhost:50000/api/auth/login', {
-        email: username,
-        password: password,
-        firstName: 'test',
-        lastName: 'user',
-      })
-      .pipe(
-        map((user) => {
-          if (user && user.token) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
-            this.isAuthenticated = true;
-          }
-          return user;
-        })
-      );
-  }
   logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);

@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'callbacks/aws', component: CallbackComponent },
+  { path: 'callbacks', component: CallbackComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
