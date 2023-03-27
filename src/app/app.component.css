@@ -26,12 +26,12 @@ p {
 }
 
 .toolbar {
+  display: flex;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
-  display: flex;
+  height: 75px;
   align-items: center;
   background-color: #1976d2;
   color: white;

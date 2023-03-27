@@ -23,22 +23,21 @@ export class LoginComponent implements OnInit {
 
   loginNative(): void {
     //this.router.navigate(['/home']);
-    this.authService
-      .loginNative(this.email, this.password)
-      .subscribe((result) => {
-        if (result) {
-          this.router.navigate(['/home']);
-        }
-      });
+    if (this.email && this.password) {
+      this.authService.loginNative(this.email, this.password);
+    }
   }
 
   // signInWithFB(): void {
   //   this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   // }
 
-  loginWithGoogle(): void {}
+  loginWithGoogle(): void {
+    window.location.href = 'http://localhost:50000/api/auth/initiate-google';
+  }
 
-  loginSaml(): void {
-    window.location.href = 'http://localhost:50000/api/auth/initiate-saml';
+  loginSaml(type: string): void {
+    const url = `${window.location.origin}/login-popup?type=${type}`;
+    window.open(url, '_blank', 'width=500,height=500');
   }
 }

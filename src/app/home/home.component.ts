@@ -8,11 +8,19 @@ import { AuthService } from '../saml-authentication.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  public userName: any;
+  public userEmail: any;
+
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.getUser().subscribe((user) => {
+      this.userName = user.name;
+      this.userEmail = user.email;
+    });
+  }
 
-  logout(): void {
+  logoutUser(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
   }

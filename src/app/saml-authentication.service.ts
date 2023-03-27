@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { map, filter, tap } from 'rxjs/operators';
 import { User } from './user';
 import { UserRegister } from './userRegister';
 import { corsConfig } from './cors.config';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private readonly authUrl = 'http://localhost:50000/api/auth'; // Adjust the URL to match your .NET 6 API endpoint
+
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
   private isAuthenticated = false;
+  private _tempUserData: any;
 
-  constructor(private http: HttpClient) {
-    ///TEMPORARY USAGE///
+  constructor(private http: HttpClient, private router: Router) {
     //
     localStorage.setItem(
       'currentUser',
@@ -27,16 +30,12 @@ export class AuthService {
         token: 'fake-jwt-token',
       })
     );
-    //
-    ///TEMPORARY USAGE///
-
     const storedUser = localStorage.getItem('currentUser');
-
-    //
     console.log(storedUser);
     //
 
     let initialUser: User | null = null;
+
     if (storedUser) {
       try {
         initialUser = JSON.parse(storedUser);
@@ -50,8 +49,34 @@ export class AuthService {
       .pipe(filter((user) => user !== null));
   }
 
+  setTempUserData(user: any): void {
+    this._tempUserData = user;
+    console.log(user);
+  }
+
+  getTempUserData(): any {
+    const tempUser = this._tempUserData;
+    this._tempUserData = null; // Clear the temporary data
+    return tempUser;
+  }
+
   public get currentUserValue(): User | null {
     return this.currentUserSubject.value;
+  }
+
+  getUser(): Observable<{ email: string; name: string }> {
+    return this.http.get<{ email: string; name: string }>(
+      `${this.authUrl}/isAuthenticated`,
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  isUserAuthenticated(): Observable<boolean> {
+    return this.http.get<boolean>(`${this.authUrl}/isAuthenticated`, {
+      withCredentials: true,
+    });
   }
 
   signup(form: UserRegister) {
@@ -78,11 +103,11 @@ export class AuthService {
       );
   }
 
-  loginNative(username: string, password: string) {
-    console.log(username, password);
+  loginNative(email: string, password: string) {
+    console.log(email, password);
     return this.http
       .post<any>('http://localhost:50000/api/auth/login', {
-        email: username,
+        email: email,
         password: password,
         firstName: 'test',
         lastName: 'user',
@@ -99,34 +124,20 @@ export class AuthService {
       );
   }
 
-  loginGoogle(username: string, password: string) {
-    console.log(username, password);
+  logout(): Observable<boolean> {
+    console.log('logout firing');
     return this.http
-      .post<any>('http://localhost:50000/api/auth/login', {
-        email: username,
-        password: password,
-        firstName: 'test',
-        lastName: 'user',
+      .post<boolean>(`${this.authUrl}/logoutUser`, {
+        withCredentials: true,
       })
       .pipe(
-        map((user) => {
-          if (user && user.token) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
-            this.isAuthenticated = true;
-          }
-          return user;
+        map(() => {
+          localStorage.removeItem('currentUser');
+          this.currentUserSubject.next(null);
+          this.isAuthenticated = false;
+          this.router.navigate(['/login']);
+          return true;
         })
       );
-  }
-
-  logout() {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-    this.isAuthenticated = false;
-  }
-
-  public getIsAuthenticated(): boolean {
-    return this.isAuthenticated;
   }
 }

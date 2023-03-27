@@ -6,59 +6,51 @@
 }
 .btnPad {
   padding: 5px;
-  display: flex;
   margin-left: 50px;
   margin-top: 30px;
 }
 .btnClr {
   background-color: rgb(202, 201, 201);
-  border-radius: 5px; /* Round the corners of the card */
+  border-radius: 5px;
 }
 .btnPad2 {
   border-radius: 5px;
   padding: 15px;
-  display: flex;
-  margin-left: 205px;
   margin-top: 50px;
   margin-bottom: -25px;
+  margin-left: 200px;
 }
-.btnPad3 {
-  margin-left: 100px;
+
+.btn2 {
+  margin-top: 25px;
 }
 .card {
   margin-top: 80px;
   margin-bottom: 25px;
   padding: 10px;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.7
-  ); /* Set the background color to a translucent white */
-  border: 2px solid #ccc; /* Add a border around the card */
-  border-radius: 5px; /* Round the corners of the card */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a shadow to make the card look like it's floating */
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .form-group {
   padding: 10px;
 }
 .card-title {
-  text-align: center; /* Center the title */
-  margin-bottom: 1.5rem; /* Add some spacing between the title and the form */
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
-
 .form-group {
-  margin-bottom: 1rem; /* Add some spacing between form elements */
+  margin-bottom: 1rem;
 }
-
 input[type="email"],
 input[type="password"] {
-  border: none; /* Remove the default border */
-  border-bottom: 2px solid #ccc; /* Add a bottom border */
-  border-radius: 0; /* Remove the default border radius */
-  background-color: transparent; /* Set the background color to transparent */
-  box-shadow: none; /* Remove the default box shadow */
-  width: 500px; /* Set the width to 100% */
+  border: none;
+  border-bottom: 2px solid #ccc;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  width: 500px;
 }
 
 input[type="email"]:focus,

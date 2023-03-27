@@ -4,6 +4,7 @@ body {
 
 .card {
   margin: 50px auto;
+  margin-top: 150px;
   max-width: 600px;
   padding: 20px;
   border-radius: 5px;

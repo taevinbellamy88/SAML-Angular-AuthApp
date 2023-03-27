@@ -1,3 +1,8 @@
-<p>home works!</p>
-<h2>Home</h2>
-<button (click)="logout()">Logout</button>
+<div class="container">
+  <h2>Home</h2>
+  <div class="user-info">
+    <p><strong>Email:</strong> {{ userEmail }}</p>
+    <p><strong>Name:</strong> {{ userName }}</p>
+  </div>
+  <button (click)="logoutUser()" class="logout-button">Logout</button>
+</div>

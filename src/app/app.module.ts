@@ -13,6 +13,7 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { CorsInterceptorService } from './cors-interceptor.service';
 import { CallbackComponent } from './callback/callback.component';
 import { GoogleSsoComponent } from './google-sso/google-sso.component';
+import { LoginPopupComponent } from './login-popup/login-popup.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { GoogleSsoComponent } from './google-sso/google-sso.component';
     SignupComponent,
     CallbackComponent,
     GoogleSsoComponent,
+    LoginPopupComponent,
   ], // Add SignupComponent to declarations
   imports: [
     BrowserModule,
