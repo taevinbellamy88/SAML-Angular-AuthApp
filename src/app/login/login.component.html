@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body">
           <h2 class="card-title">Login</h2>
-          <form>
+          <form #loginForm="ngForm" (ngSubmit)="loginNative($event)">
             <div class="form-group">
               <label for="email">Email</label>
               <input
@@ -27,11 +27,7 @@
                 required
               />
               <div class="form-group d-flex justify-content-center">
-                <button
-                  type="submit"
-                  class="btn btn-primary btn2"
-                  (click)="loginNative()"
-                >
+                <button type="submit" class="btn btn-primary btn2">
                   Login
                 </button>
               </div>
@@ -40,7 +36,7 @@
             <div class="form-group d-flex justify-content-center">
               <div class="btnContainer">
                 <button
-                  type="submit"
+                  type="button"
                   class="btn btn-primary"
                   (click)="loginSaml('MSC')"
                 >
@@ -51,7 +47,7 @@
             <div class="form-group d-flex justify-content-center">
               <div class="btnContainer">
                 <button
-                  type="submit"
+                  type="button"
                   class="btn btn-secondary"
                   (click)="loginSaml('Kennametal')"
                 >

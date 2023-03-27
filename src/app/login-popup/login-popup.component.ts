@@ -2,7 +2,6 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../saml-authentication.service';
 import { Router } from '@angular/router';
-import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-login-popup',
@@ -57,10 +56,6 @@ export class LoginPopupComponent implements OnInit {
         next: (user) => {
           console.log('Login successful', user);
 
-          const navigationExtras: NavigationExtras = {
-            state: { userData: user },
-          };
-
           this.authService.setTempUserData(user); // Store the user data
           window.opener.location.href = `/callbacks?code=${user.accessToken}&tokenType=${user.tokenType}`; // Redirect the parent window
           window.close(); // Close the popup window
@@ -70,5 +65,9 @@ export class LoginPopupComponent implements OnInit {
         },
       });
     }
+  }
+
+  loginSaml() {
+    window.location.href = 'http://localhost:50000/api/auth/initiate-saml';
   }
 }

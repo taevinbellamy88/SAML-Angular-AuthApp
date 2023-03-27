@@ -21,10 +21,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  loginNative(): void {
-    //this.router.navigate(['/home']);
+  loginNative(event: Event): void {
+    event.preventDefault();
+    console.log('loginNative() called');
     if (this.email && this.password) {
-      this.authService.loginNative(this.email, this.password);
+      this.authService.loginNative(this.email, this.password).subscribe(
+        (user) => {
+          console.log('User logged in:', user);
+          window.location.href = `http://localhost:4200/callbacks?code=${user.accessToken}&tokenType=${user.tokenType}`;
+        },
+        (error) => {
+          console.error('Login error:', error);
+        }
+      );
     }
   }
 

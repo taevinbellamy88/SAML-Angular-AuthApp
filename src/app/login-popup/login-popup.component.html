@@ -27,8 +27,18 @@
           class="form-control"
           required
         />
-        <button type="submit" class="btn btn-primary mt-4">Login</button>
       </div>
     </form>
+    <div class="form-group d-flex justify-content-center">
+      <div class="btnContainer">
+        <button
+          type="submit"
+          class="btn btn-primary mt-4"
+          (click)="loginSaml()"
+        >
+          Login via {{ title }}
+        </button>
+      </div>
+    </div>
   </div>
 </div>

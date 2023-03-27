@@ -25,16 +25,22 @@ export class CallbackComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.code = params['code'];
       this.tokenType = params['tokenType'];
-      console.log(params);
+      console.log(params, this.route);
     });
-    this.userData =
-      this.router.getCurrentNavigation()?.extras.state?.['userData'];
+    if (this.isInPopupWindow()) {
+      window.opener.location.href = `/callbacks?code=${this.code}&tokenType=${this.tokenType}`;
+      window.close();
+    }
   }
 
   //
   //
   //
   //
+
+  isInPopupWindow(): boolean {
+    return window.opener && !window.opener.closed;
+  }
 
   goBack() {
     this.location.back();
