@@ -2,16 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../saml-authentication.service';
 import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  email: string = ''; // Define the email property
-  password: string = '';
   loggedIn: boolean = false;
+
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
+  });
 
   constructor(
     private authService: AuthService,
@@ -21,11 +25,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  loginNative(event: Event): void {
-    event.preventDefault();
+  loginNative(): void {
     console.log('loginNative() called');
-    if (this.email && this.password) {
-      this.authService.loginNative(this.email, this.password).subscribe(
+    const email = this.loginForm.controls['email'].value as string;
+    const password = this.loginForm.value.password as string;
+    if (this.loginForm.valid) {
+      this.authService.loginNative(email, password).subscribe(
         (user) => {
           console.log('User logged in:', user);
           window.location.href = `http://localhost:4200/callbacks?code=${user.accessToken}&tokenType=${user.tokenType}`;

@@ -1,0 +1,41 @@
+$disabled-background-color: rgba(128, 128, 128, .3);
+
+.login-container {
+  width: 25%;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 1.5rem;
+  border: black solid 1px;
+  border-radius: 1rem;
+
+  button, mat-form-field {
+    display: block;
+  }
+
+  button {
+    margin: auto;
+    margin-bottom: 1rem;
+    width: 10rem;
+  }
+
+  .header {
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    padding: 0 1rem;
+  }
+
+  .button-divider {
+    text-align: center;
+  }
+  .login-button:disabled {
+    background-color: $disabled-background-color;
+    border-color: $disabled-background-color;
+    color: rgb(68, 68, 68);
+  }
+}
+

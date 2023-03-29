@@ -27,10 +27,8 @@ p {
 
 .toolbar {
   display: flex;
-  position: absolute;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   height: 75px;
   align-items: center;
   background-color: #1976d2;

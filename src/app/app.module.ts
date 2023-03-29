@@ -14,6 +14,11 @@ import { CorsInterceptorService } from './cors-interceptor.service';
 import { CallbackComponent } from './callback/callback.component';
 import { GoogleSsoComponent } from './google-sso/google-sso.component';
 import { LoginPopupComponent } from './login-popup/login-popup.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,12 @@ import { LoginPopupComponent } from './login-popup/login-popup.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule, // Add ReactiveFormsModule here
+    ReactiveFormsModule,
+    NoopAnimationsModule, // Add ReactiveFormsModule here
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTabsModule
   ],
   providers: [
     AuthService,
