@@ -8,17 +8,25 @@
   <form [formGroup]="loginForm" (ngSubmit)="loginNative()">
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput type="text" formControlName="email">
+      <input matInput type="text" formControlName="email" />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput type="password" formControlName="password" required>
+      <input matInput type="password" formControlName="password" required />
     </mat-form-field>
-    <button class="btn btn-primary login-button"
-            type="submit" 
-            [disabled]="!loginForm.valid">Login</button>
+    <button
+      class="btn btn-primary login-button"
+      type="submit"
+      [disabled]="!loginForm.valid"
+    >
+      Login
+    </button>
   </form>
   <p class="button-divider">Or</p>
-  <button class="btn btn-secondary" (click)="loginSaml('MSC')">Login via MSC</button>
-  <button class="btn btn-warning" (click)="loginSaml('Kennametal')">Login via Kennametal</button>
+  <button class="btn btn-secondary" (click)="loginSaml('MSC')">
+    Login via MSC
+  </button>
+  <button class="btn btn-warning" (click)="loginSaml('Kennametal')">
+    Login via Kennametal
+  </button>
 </div>
